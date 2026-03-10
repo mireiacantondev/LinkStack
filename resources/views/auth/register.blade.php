@@ -1,52 +1,47 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+    <div class="w-full px-4 py-8">
+        
+        <div class="w-full max-w-xl mx-auto">
+            
+            <h1 class="font-sansation text-3xl md:text-4xl text-[#6A6ECF] mb-6 text-left">
+                Sign Up
+            </h1>
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <div class="bg-white p-6 md:p-10 rounded-2xl shadow-[0_0_20px_rgba(106,110,207,0.5),0_0_60px_rgba(106,110,207,0.3)] border border-gray-100">
+                <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                    @csrf
+                    
+                    <div>
+                        <input type="text" name="name" placeholder="Name" required
+                            class="block w-full rounded-full border-gray-300 shadow-sm focus:border-[#6A6ECF] focus:ring-[#6A6ECF] shadow-[0_0_10px_rgba(106,110,207,0.6),0_0_30px_rgba(106,110,207,0.4)] py-3 px-6 transition duration-200">
+                    </div>
+
+                    <div>
+                        <input type="email" name="email" placeholder="Email" required
+                            class="block w-full rounded-full border-gray-300 shadow-sm focus:border-[#6A6ECF] focus:ring-[#6A6ECF] shadow-[0_0_10px_rgba(106,110,207,0.6),0_0_30px_rgba(106,110,207,0.4)] py-3 px-6 transition duration-200">
+                    </div>
+
+                    <div>
+                        <input type="password" name="password" placeholder="Password" required
+                            class="block w-full rounded-full border-gray-300 shadow-sm focus:border-[#6A6ECF] focus:ring-[#6A6ECF] shadow-[0_0_10px_rgba(106,110,207,0.6),0_0_30px_rgba(106,110,207,0.4)] py-3 px-6 transition duration-200">
+                    </div>
+
+                    <div>
+                        <input type="password" name="password_confirmation" placeholder="Confirm Password" required
+                            class="block w-full rounded-full border-gray-300 shadow-sm focus:border-[#6A6ECF] focus:ring-[#6A6ECF] shadow-[0_0_10px_rgba(106,110,207,0.6),0_0_30px_rgba(106,110,207,0.4)] py-3 px-6 transition duration-200">
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <a href="{{ route('login') }}" class="text-sm text-gray-500 hover:text-[#6A6ECF] transition hover:underline">
+                            Already registered?
+                        </a>
+                        <button type="submit" 
+                            class="bg-[#6A6ECF] text-white px-8 py-3 rounded-full hover:bg-[#585db5] transition duration-200 ">
+                            Send
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </x-guest-layout>
