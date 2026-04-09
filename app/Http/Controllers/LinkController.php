@@ -33,9 +33,15 @@ class LinkController extends Controller
             'category_id' => 'nullable|exists:categories,id',
         ]);
 
-        auth()->user()->links()->create($request->all());
+        auth()->user()->links()->create([
+            'title' => $request->title,
+            'url' => $request->url,
+            'category_id' => $request->category_id,
+            'order' => 0, // Por ahora por defecto
+            'is_active' => true,
+        ]);
 
-        return redirect()->route('dashboard')->with('success', '¡Enlace creado!');
+        return back()->with('success', 'Enlace añadido correctamente');
     }
 
     /**

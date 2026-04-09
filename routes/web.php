@@ -11,7 +11,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    // Traemos las categorías del usuario autenticado
     $categories = auth()->user()->categories()->orderBy('order')->get();
+    
+    // Se las pasamos a la vista
     return view('dashboard', compact('categories'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
