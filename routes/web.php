@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\CategoryController;
 use App\Models\Category;
 
 Route::get('/', function () {
@@ -23,6 +24,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     // ... tus otras rutas como el dashboard ...
     Route::resource('links', LinkController::class);
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('links', LinkController::class);
+    Route::resource('categories', CategoryController::class); // Esta es la clave
 });
 
 require __DIR__.'/auth.php';
