@@ -6,7 +6,9 @@ export default defineConfig({
         host: '0.0.0.0', 
         hmr: {
             host: '192.168.1.135' 
-        }
+        },
+        cors: true, // Esto permite que Laravel lea los scripts
+
     },
     plugins: [
         laravel({
