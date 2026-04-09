@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -69,8 +70,15 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        // Verificamos que la categoría pertenezca al usuario (seguridad)
+        if ($category->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $category->delete();
+
+        return back()->with('success', 'Categoría eliminada con éxito');
     }
 }
